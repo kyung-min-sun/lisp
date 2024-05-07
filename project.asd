@@ -1,8 +1,9 @@
-(defsystem "."
+(defsystem "#:my-system"
   :version "0.0.1"
-  :author ""
-  :license ""
-  :depends-on ()
+  :author "kevin"
+  :license "MIT"
+  :depends-on (#:woo
+               #:spinneret)
   :components ((:module "src"
                 :components
                 ((:file "main"))))
