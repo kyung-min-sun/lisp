@@ -4,6 +4,7 @@
                "spinneret"))
 
 (use-package :spinneret)
+(use-package :optima)
 
 (defparameter *shopping-list*
    '("Atmospheric ponds"
@@ -36,10 +37,14 @@
              (:li (1+ (random 10)) item))))
      (:footer ("Last login: ~A" *last-login*))))
 
+(defun handler (env)
+  (optima:match env 
+    ((guard (property :path-info path)
+            (alexandria:starts-with-subseq "/foo" path))
+      `(200 nil (,(format nil "The path ~A is in /foo~%" path))))))
+
 (clack:clackup
   (lambda (env)
-    `(200
-      (:content-type "text/html")
-      (,(shopping-list))))
+    (funcall 'handler env))
   :port 3000)
 
