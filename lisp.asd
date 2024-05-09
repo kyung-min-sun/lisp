@@ -2,7 +2,9 @@
   :version "0.0.1"
   :author "kevin"
   :license "MIT"
-  :depends-on (#:woo
+  :depends-on (#:clack
+               #:alexandria
+               #:optima
                #:spinneret)
   :components ((:module "src"
                 :components
